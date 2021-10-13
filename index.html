@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
+    <script src="https://unpkg.com/video.js/dist/video.js"></script>
+    <script src="https://unpkg.com/videojs-contrib-hls/dist/videojs-contrib-hls.js"></script>
+
+    <style>
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #FFFFFF;
+        }
+        
+        #back-container {
+            display: flex;
+            flex-direction: row;
+            height: 100%;
+            width: 100%;
+            background-color: black;
+            overflow: hidden;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #icon {
+            font-size: 150px;
+            color: white;
+        }
+        
+        #text {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 25px;
+            color: white;
+        }
+        
+        #vid-container {
+            position: absolute;
+            top: 0px;
+            height: 100%;
+            width: 100%;
+        }
+        
+        .vid-tkmedia {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    </style>
+
+    <title>TK-Mp4</title>
+</head>
+
+<body>
+    <div id="back-container">
+        <div id="icon">
+            🗂
+        </div>
+        <div id="text">
+            TKMedia
+        </div>
+    </div>
+    <div id="vid-container">
+        <video id="vid" class="video-js vjs-fluid vjs-default-skin vid-tkmedia" preload="auto" data-setup='{}' autoplay>
+            <source id="vid_source" src="" type="application/x-mpegURL">
+        </video>
+    </div>
+
+    <script>
+        function GetURLParameter(sParam) {
+            var sPageURL = window.location.search.substring(1);
+            sPageURL = decodeURI(sPageURL); // Testing Phase <----------------------------- Testing Phase
+            var sURLVariables = sPageURL.split('[&]');
+            for (var i = 0; i < sURLVariables.length; i++) {
+                var sParameterName = sURLVariables[i].split('[=]');
+                if (sParameterName[0] == sParam) {
+                    return sParameterName[1];
+                }
+            }
+        }
+
+        var url = GetURLParameter('url');
+        var videosource = document.getElementById('vid_source');
+        var player = videojs('vid');
+        videosource.setAttribute('src', url);
+        player.play();
+
+        var time = GetURLParameter('time');
+        if (time != undefined) {
+            document.getElementById('vid').currentTime = time;
+        }
+    </script>
+</body>
+
+</html>
