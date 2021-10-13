@@ -89,8 +89,8 @@
 
         var url = GetURLParameter('url');
         var videosource = document.getElementById('vid_source');
-        var player = videojs('vid');
         videosource.setAttribute('src', url);
+        var player = videojs('vid');
         player.play();
 
         var time = GetURLParameter('time');
