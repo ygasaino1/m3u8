@@ -104,7 +104,8 @@
 
         var time = GetURLParameter('time');
         if (time != undefined) {
-            document.getElementById('vid').currentTime = time;
+            //document.getElementById('vid').currentTime = time;
+            player.setCurrentTime(time)
         }
     </script>
 </body>
