@@ -1,1 +1,3 @@
-# m3u8
+---
+permalink: /index.html
+---
