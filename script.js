@@ -15,12 +15,11 @@ function GetURLParameter(sParam) {
     }
 }
 
-var url = GetURLParameter('url');
-setTimeout(() => {
-    console.log(url);
+player.ready(() => {
+    let url = GetURLParameter('url');
     player.src({ type: "application/x-mpegURL", src: url });
     player.play();
-}, 3000);
+});
 
 var time = GetURLParameter('time');
 if (time != undefined) {
