@@ -16,9 +16,7 @@ function GetURLParameter(sParam) {
 }
 
 var url = GetURLParameter('url');
-var videosource = document.getElementById('vid_source');
-videosource.setAttribute('src', url);
-var player = videojs('vid');
+player.src({ type: "application/x-mpegURL", src: url });
 player.play();
 
 var time = GetURLParameter('time');
