@@ -3,6 +3,13 @@
 // const video_elem = document.querySelector('#vid_html5_api');
 // player.src({ type: "application/x-mpegURL", src: video_link });
 
+function htmlToElement(html) {
+    var template = document.createElement('template');
+    html = html.trim(); // Never return a text node of whitespace as the result
+    template.innerHTML = html;
+    return template.content.firstChild;
+}
+
 function GetURLParameter(sParam) {
     var sPageURL = window.location.search.substring(1);
     sPageURL = decodeURI(sPageURL); // Testing Phase <----------------------------- Testing Phase
@@ -20,6 +27,7 @@ player.ready(() => {
     player.src({ type: "application/x-mpegURL", src: url });
     player.play();
 });
+
 
 var time = GetURLParameter('time');
 if (time != undefined) {
